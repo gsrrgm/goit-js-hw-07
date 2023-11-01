@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "goit-js-hw-07",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "goit-js-hw-07",
+		"liveServer.settings.port": 5501
+	}
+}
