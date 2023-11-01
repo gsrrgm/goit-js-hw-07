@@ -13,25 +13,27 @@
 */
 
 import { galleryItems } from "./gallery-items.js";
-//import * as basicLightbox from 'basiclightbox'
-// Change code below this line
 
-const liEl = document.querySelector(".gallery");
-galleryItems.forEach((element) => {
-  liEl.insertAdjacentHTML(
-    "afterbegin",
-    `<li class="gallery__item">
-    <a class="gallery__link" href=${element.preview}>
+const list = document.querySelector(".gallery");
+createMarckup(galleryItems);
+function createMarckup(array) {
+  const markup = array
+    .map(
+      ({ description, original, preview }) =>
+        `<li class="gallery__item">
+     <a class="gallery__link" href=${preview}>
       <img
         class="gallery__image"
-        src=${element.preview}
-        data-source=${element.original}
-        alt=${element.description}
-      />
-    </a>
+         src=${preview}
+        data-source=${original}
+        alt=${description}
+       />
+     </a>
   </li>`
-  );
-});
+    )
+    .join("");
+  list.insertAdjacentHTML("beforeend", markup);
+}
 
 const handelClick = (eve) => {
   eve.preventDefault();
@@ -39,10 +41,12 @@ const handelClick = (eve) => {
     .create(`<img width="1400" height="900" src=${eve.target.dataset.source}>`)
     .show();
 };
-liEl.addEventListener("click", handelClick);
+list.addEventListener("click", handelClick);
 
-// document.addEventListener("keydown", (event) => {
-//     if (event.key !== "Escape") {
-//       return
-//     } instance.close();
-//     })
+// list.addEventListener("keydown", (event) => {
+//   if (event.key !== "Escape") {
+//     return;
+//   }
+//   console.log("escepe");
+//   basicLightbox.close();
+// });
