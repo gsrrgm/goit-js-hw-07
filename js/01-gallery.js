@@ -1,21 +1,10 @@
-/* 
-1. Створення і рендер розмітки на підставі масиву даних galleryItems і наданого 
-        шаблону елемента галереї.
-2. Реалізація делегування на ul.gallery і отримання url великого зображення.
-3. Підключення скрипту і стилів бібліотеки модального вікна basicLightbox. 
-4. Використовуй CDN сервіс jsdelivr 
-       і додай у проект посилання на мініфіковані (.min) файли бібліотеки.
-5. Відкриття модального вікна по кліку на елементі галереї. 
-6. Для цього ознайомся з документацією і прикладами.
-7 .Заміна значення атрибута src елемента <img> в модальному вікні перед відкриттям. 
-        Використовуй готову розмітку модального вікна 
-            із зображенням з прикладів бібліотеки basicLightbox.
-*/
-
 import { galleryItems } from "./gallery-items.js";
 
 const list = document.querySelector(".gallery");
 createMarckup(galleryItems);
+
+//  1. Створення і рендер розмітки на підставі масиву даних galleryItems
+
 function createMarckup(array) {
   const markup = array
     .map(
@@ -35,7 +24,12 @@ function createMarckup(array) {
   list.insertAdjacentHTML("beforeend", markup);
 }
 
+// 5. Відкриття модального вікна по кліку на елементі галереї.
+
 const handelClick = (eve) => {
+  if (!eve.target.classList.contains("gallery__image")) {
+    return;
+  }
   eve.preventDefault();
   basicLightbox
     .create(`<img width="1400" height="900" src=${eve.target.dataset.source}>`)
@@ -43,10 +37,26 @@ const handelClick = (eve) => {
 };
 list.addEventListener("click", handelClick);
 
-// list.addEventListener("keydown", (event) => {
+// test
+
+// const instance = basicLightbox.create(`
+//     <div class="modal">
+//         <p>A custom modal that has been styled independently. It's not part of basicLightbox, but perfectly shows its flexibility.</p>
+//         <input placeholder="Type something">
+//         <a>Close</a>
+//     </div>
+// `, {
+//     onShow: (instance) => {
+//         instance.element().querySelector('a').onclick = instance.close
+//     }
+// })
+
+// instance.show()
+
+// const onPressEsc = (event) => {
 //   if (event.key !== "Escape") {
-//     return;
+//     return
+//      console.log(event.key);
 //   }
-//   console.log("escepe");
-//   basicLightbox.close();
-// });
+// }
+// document.addEventListener("keydown", onPressEsc)

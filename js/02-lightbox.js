@@ -19,5 +19,6 @@ function createMarckup(array) {
   list.insertAdjacentHTML("beforeend", markup);
 }
 const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt', overlayOpacity: '0.9', showCounter: 'true', animationSpeed: '450', enableKeyboard: 'true', preloading: 'true',
+    captionsData: 'alt', overlayOpacity: '0.9', showCounter: 'true', 
+    animationSpeed: '450', enableKeyboard: 'true', preloading: 'true',
   });
