@@ -27,36 +27,13 @@ function createMarckup(array) {
 // 5. Відкриття модального вікна по кліку на елементі галереї.
 
 const handelClick = (eve) => {
-  if (!eve.target.classList.contains("gallery__image")) {
+  if (!eve.target.hasAttribute('src')) {
     return;
   }
   eve.preventDefault();
-  basicLightbox
+   basicLightbox
     .create(`<img width="1400" height="900" src=${eve.target.dataset.source}>`)
     .show();
 };
+
 list.addEventListener("click", handelClick);
-
-// test
-
-// const instance = basicLightbox.create(`
-//     <div class="modal">
-//         <p>A custom modal that has been styled independently. It's not part of basicLightbox, but perfectly shows its flexibility.</p>
-//         <input placeholder="Type something">
-//         <a>Close</a>
-//     </div>
-// `, {
-//     onShow: (instance) => {
-//         instance.element().querySelector('a').onclick = instance.close
-//     }
-// })
-
-// instance.show()
-
-// const onPressEsc = (event) => {
-//   if (event.key !== "Escape") {
-//     return
-//      console.log(event.key);
-//   }
-// }
-// document.addEventListener("keydown", onPressEsc)
